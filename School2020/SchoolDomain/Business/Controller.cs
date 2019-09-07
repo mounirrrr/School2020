@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolBusiness
+namespace SchoolDomain.Business
 {
-    public class Controller
+    class Controller
     {
     }
 }
