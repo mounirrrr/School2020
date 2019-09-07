@@ -42,5 +42,21 @@ namespace SchoolDomain.Business
             return VakRepository.FindItem(naam);
         }
         #endregion
+
+        #region Evaluatie
+        public Evaluatie NieuweEvaluatie(Int32 vakId, string titel, double behaald, double maximum)
+        {
+            Vak _vak = VakRepository.GetItem(vakId);
+            Evaluatie _ev = _vak.NieuweEvaluatie(titel, behaald, maximum);
+            return _ev;
+            //Is er werk in de database?
+        }
+
+        public List<Evaluatie> GetAlleEvaluaties(Int32 vakId)
+        {
+            Vak _vak = VakRepository.GetItem(vakId);
+            return _vak.Evaluaties;
+        }
+        #endregion
     }
 }
