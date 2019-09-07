@@ -23,12 +23,13 @@ namespace SchoolDomain.Business
         }
 
         #region Vakken
-        public void NieuwVak(string naam)
+        public Vak NieuwVak(string naam)
         {
             Int32 _id = VakRepository.GetNextId();
             Vak _vak = new Vak(_id,naam);
             VakRepository.AddItem(_vak);
             //Is dit vak opgeslagen in de database?
+            return _vak;
         }
 
         public List<Vak> GetAlleVakken()
