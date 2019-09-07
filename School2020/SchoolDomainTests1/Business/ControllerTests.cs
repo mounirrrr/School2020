@@ -14,7 +14,11 @@ namespace SchoolDomain.Business.Tests
         [TestMethod()]
         public void NieuwVakTest()
         {
-            Assert.Fail();
+            Controller c = new Controller();
+            Vak _vak = c.NieuwVak("wiskunde");
+            c.NieuweEvaluatie(_vak.Id, "priemgetallen", 18, 20);
+            c.NieuweEvaluatie(_vak.Id, "ontbinden in factoren", 14, 20);
+            Assert.AreEqual(_vak.Resultaat, 80.0);
         }
     }
 }
