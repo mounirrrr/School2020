@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Business\Controller.cs" />
     <Compile Include="Business\Entity.cs" />
+    <Compile Include="Business\Evaluatie.cs" />
     <Compile Include="Business\Vak.cs" />
     <Compile Include="Business\VakRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
