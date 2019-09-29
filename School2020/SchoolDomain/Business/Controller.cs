@@ -19,6 +19,8 @@ namespace SchoolDomain.Business
         {
             if (!_loaded) { 
                 VakRepository.Load(null);
+                ComponentRepository.Load(null);
+                _loaded = true; // slechts 1X load-operatie uitvoeren
             //Wat als we het programma opnieuw opstarten?
             }
         }

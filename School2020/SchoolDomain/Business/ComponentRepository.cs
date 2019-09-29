@@ -65,7 +65,10 @@ namespace SchoolDomain.Business
 
         internal static void Load(List<Component> items)
         {
-            Items = items;
+            if (items == null)
+                Items = new List<Component>();
+            else
+                Items = items;
         }
     }
 }
