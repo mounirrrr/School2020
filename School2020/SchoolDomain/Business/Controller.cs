@@ -17,9 +17,10 @@ namespace SchoolDomain.Business
 
         public Controller()
         {
-            if (!_loaded)
+            if (!_loaded) { 
                 VakRepository.Load(null);
             //Wat als we het programma opnieuw opstarten?
+            }
         }
 
         #region Vakken
@@ -44,11 +45,26 @@ namespace SchoolDomain.Business
         }
         #endregion
 
+        #region Component
+        public Component MaakComponent(string naam, Int32 gewicht, string afkorting = "")
+        {
+            Int32 cId = ComponentRepository.GetNextId();
+            Component c = new Component(cId, naam, gewicht, afkorting);
+            ComponentRepository.AddItem(c);
+            return c;
+        }
+
+        public List<Component> GetComponents()
+        {
+            return ComponentRepository.Items;
+        }
+        #endregion
+
         #region Evaluatie
-        public Evaluatie NieuweEvaluatie(Int32 vakId, string titel, double behaald, double maximum)
+        public Evaluatie NieuweEvaluatie(Int32 vakId, string titel, double behaald, double maximum, Int32 componentId)
         {
             Vak _vak = VakRepository.GetItem(vakId);
-            Evaluatie _ev = _vak.NieuweEvaluatie(titel, behaald, maximum);
+            Evaluatie _ev = _vak.NieuweEvaluatie(titel, behaald, maximum, componentId);
             return _ev;
             //Is er werk in de database?
         }
