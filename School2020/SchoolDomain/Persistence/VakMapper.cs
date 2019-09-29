@@ -58,6 +58,54 @@ namespace SchoolDomain.Persistence
                 con.Close();
             }
         }
+        internal void DeleteVakFromDB(Int32 id)
+        {
+            MySqlConnection con = new MySqlConnection(_connectionString);
+            MySqlCommand cmd = new MySqlCommand(
+                "DELETE FROM tblvak " +
+                "WHERE Id = @id",
+                con);
+            cmd.Parameters.AddWithValue("id", id);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException mse)
+            {
+                throw mse;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        internal void UpdateVakInDB(Vak vak)
+        {
+            MySqlConnection con = new MySqlConnection(_connectionString);
+            MySqlCommand cmd = new MySqlCommand(
+                "UPDATE tblvak " +
+                "SET naam = @naam " +
+                "WHERE Id = @id",
+                con);
+            cmd.Parameters.AddWithValue("id", vak.Id);
+            cmd.Parameters.AddWithValue("naam", vak.Naam);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException mse)
+            {
+                throw mse;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
 
     }
 }

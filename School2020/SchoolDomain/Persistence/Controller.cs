@@ -36,6 +36,16 @@ namespace SchoolDomain.Persistence
             vm.AddVakToDB(vak);
         }
 
+        internal static void DeleteVak(Vak vak)
+        {
+            VakMapper vm = new VakMapper(ConnectionString);
+            vm.DeleteVakFromDB(vak.Id);
+        }
+        internal static void UpdateVak(Vak vak)
+        {
+            VakMapper vm = new VakMapper(ConnectionString);
+            vm.UpdateVakInDB(vak);
+        }
         #endregion
         internal static List<Component> GetAlleComponenten()
         {
