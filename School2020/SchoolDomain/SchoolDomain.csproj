@@ -52,6 +52,7 @@
     <Compile Include="Business\Vak.cs" />
     <Compile Include="Business\VakRepository.cs" />
     <Compile Include="Business\Component.cs" />
+    <Compile Include="Persistence\ComponentMapper.cs" />
     <Compile Include="Persistence\Controller.cs" />
     <Compile Include="Persistence\VakMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

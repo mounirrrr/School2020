@@ -49,7 +49,14 @@ namespace SchoolDomain.Persistence
         #endregion
         internal static List<Component> GetAlleComponenten()
         {
-            return null;
+            ComponentMapper cm = new ComponentMapper(ConnectionString);
+            return cm.GetComponentsFromDB();
+        }
+
+        internal static void AddComponent(Component component)
+        {
+            ComponentMapper cm = new ComponentMapper(ConnectionString);
+            cm.AddComponentToDB(component);
         }
 
     }
