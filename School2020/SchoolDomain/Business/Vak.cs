@@ -50,7 +50,7 @@ namespace SchoolDomain.Business
         public double Resultaat { get { return VakResultaat(); } }
 
         /// <summary>
-        /// Bereken het resultaat van de evaluaties bij dit vak
+        /// Bereken het GEWOGEN resultaat van de evaluaties bij dit vak
         /// </summary>
         /// <returns>het behaalde percentage voor dit vak</returns>
         private double VakResultaat()
@@ -58,8 +58,8 @@ namespace SchoolDomain.Business
             double totaalBehaald = 0, totaalMaximum = 0;
             foreach (Evaluatie ev in Evaluaties)
             {
-                totaalBehaald += ev.Behaald;
-                totaalMaximum += ev.Maximum;
+                totaalBehaald += ev.Behaald * ev.Component.Gewicht / 100;
+                totaalMaximum += ev.Maximum * ev.Component.Gewicht / 100;
             }
             return Math.Round(totaalBehaald / totaalMaximum * 100, 2);
         }
@@ -72,13 +72,13 @@ namespace SchoolDomain.Business
         /// <param name="maximum">maximum</param>
         /// <returns>het goedgekeurd evaluatie-object</returns>
         /// <exception cref="ArgumentException">Controle van de ingevoerde waarden</exception>
-        internal Evaluatie NieuweEvaluatie(string titel, double behaald, double maximum)
+        internal Evaluatie NieuweEvaluatie(string titel, double behaald, double maximum, Int32 componentId)
         {
             if (behaald < 0 || maximum < 0)
                 throw new ArgumentException("Punten mogen niet negatief zijn voor " + titel);
             else if (behaald > maximum)
                 throw new ArgumentException("Te hoge punten voor evaluatie " + titel);
-            Evaluatie evaluatie = new Evaluatie(titel, behaald, maximum);
+            Evaluatie evaluatie = new Evaluatie(titel, behaald, maximum, componentId);
             Evaluaties.Add(evaluatie);
             return evaluatie;
         }
@@ -99,13 +99,14 @@ namespace SchoolDomain.Business
         /// <param name="titel">titel van de te wijzigen evaluatie</param>
         /// <param name="behaald">aangepaste behaalde punten</param>
         /// <param name="maximum">aangepast maximum</param>
-        internal void WijzigEvaluatie(string titel, double behaald, double maximum)
+        internal void WijzigEvaluatie(string titel, double behaald, double maximum, Int32 componentId)
         {
             Evaluatie evaluatie = Evaluaties.Find(e => e.Titel == titel);
             if (!(evaluatie == null))
             {
                 evaluatie.Maximum = maximum;
                 evaluatie.Behaald = behaald;
+                evaluatie.ComponentId = componentId;
             }
         }
 
