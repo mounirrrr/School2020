@@ -17,9 +17,9 @@ namespace SchoolDomain.Business
 
         public Controller()
         {
-            if (!_loaded) { 
-                VakRepository.Load(null);
-                ComponentRepository.Load(null);
+            if (!_loaded) {
+                VakRepository.Load(Persistence.Controller.GetAlleVakken());
+                ComponentRepository.Load(Persistence.Controller.GetAlleComponenten());
                 _loaded = true; // slechts 1X load-operatie uitvoeren
             //Wat als we het programma opnieuw opstarten?
             }
