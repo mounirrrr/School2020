@@ -25,7 +25,8 @@ namespace SchoolDomain.Persistence
 
         internal static List<Vak> GetAlleVakken()
         {
-            return null;
+            VakMapper vm = new VakMapper(ConnectionString);
+            return vm.GetVakkenFromDB();
         }
         internal static List<Component> GetAlleComponenten()
         {
