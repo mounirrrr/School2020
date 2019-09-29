@@ -31,7 +31,8 @@ namespace SchoolDomain.Business
             Int32 _id = VakRepository.GetNextId();
             Vak _vak = new Vak(_id,naam);
             VakRepository.AddItem(_vak);
-            //Is dit vak opgeslagen in de database?
+            //Is dit vak opgeslagen in de database
+            Persistence.Controller.AddVak(_vak);
             return _vak;
         }
 

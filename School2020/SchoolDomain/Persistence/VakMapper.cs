@@ -34,6 +34,30 @@ namespace SchoolDomain.Persistence
             con.Close();
             return _vakken;
         }
+        internal void AddVakToDB(Vak vak)
+        {
+            MySqlConnection con = new MySqlConnection(_connectionString);
+            MySqlCommand cmd = new MySqlCommand(
+                "INSERT INTO tblvak " +
+                "(Id, naam) " +
+                " VALUES(@id, @naam)",
+                con);
+            cmd.Parameters.AddWithValue("id", vak.Id);
+            cmd.Parameters.AddWithValue("naam", vak.Naam);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException mse)
+            {
+                throw mse;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
     }
 }

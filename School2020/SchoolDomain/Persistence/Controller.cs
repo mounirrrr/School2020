@@ -23,11 +23,20 @@ namespace SchoolDomain.Persistence
             }
         }
 
+        #region vakken
         internal static List<Vak> GetAlleVakken()
         {
             VakMapper vm = new VakMapper(ConnectionString);
             return vm.GetVakkenFromDB();
         }
+
+        internal static void AddVak(Vak vak)
+        {
+            VakMapper vm = new VakMapper(ConnectionString);
+            vm.AddVakToDB(vak);
+        }
+
+        #endregion
         internal static List<Component> GetAlleComponenten()
         {
             return null;
